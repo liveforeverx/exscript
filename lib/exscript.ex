@@ -167,11 +167,11 @@ defmodule Exscript do
         :ok
       end
 
-      defp start_app(nil) do
+      def start_app(nil) do
         :ok
       end
 
-      defp start_app(app) do
+      def start_app(app) do
         case :application.ensure_all_started(app) do
           {:ok, _} -> :ok
           {:error, {app, reason}} ->
@@ -209,7 +209,6 @@ defmodule Exscript do
       case :application.ensure_all_started(:elixir) do
         {:ok, _} ->
           load_config(@config)
-          start_app(@app)
           args = Enum.map(args, &List.to_string(&1))
           Kernel.CLI.run fn _ -> @module.main(args) end, true
         error ->
@@ -222,7 +221,6 @@ defmodule Exscript do
   defp main_body_for(:erlang) do
     quote do
       load_config(@config)
-      start_app(@app)
       @module.main(args)
     end
   end
