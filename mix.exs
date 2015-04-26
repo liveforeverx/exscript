@@ -1,12 +1,26 @@
 defmodule Exscript.Mixfile do
   use Mix.Project
+  @vsn "0.0.1"
+  @github "https://github.com/liveforeverx/exscript"
 
   def project do
     [app: :exscript,
-     version: "0.0.1",
+     version: @vsn,
      elixir: "~> 1.1-dev",
-     deps: deps]
+     deps: deps,
+     description: description,
+     package: package]
   end
+
+  defp description do
+    """
+    Escript generator
+    """
+  end
+
+  defp package do
+    [links: %{"GitHub" => @github}]
+   end
 
   # Configuration for the OTP application
   #
