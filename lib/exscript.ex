@@ -42,10 +42,11 @@ defmodule Exscript do
           |> Stream.concat
           |> prepare_beam_paths
 
-        if should_consolidate do
-          beam_paths =
-            Path.wildcard(consolidated_path <> "/*")
-            |> prepare_beam_paths(beam_paths)
+        beam_paths = if should_consolidate do
+          Path.wildcard(consolidated_path <> "/*")
+          |> prepare_beam_paths(beam_paths)
+        else
+          beam_paths
         end
 
         tuples = gen_main(escript_mod, main, app, language) ++
@@ -130,7 +131,7 @@ defmodule Exscript do
     end)
   end
 
-  defp consolidated_path, do: Mix.Tasks.Compile.Protocols.default_path
+  defp consolidated_path, do: Mix.Project.consolidation_path(Mix.Project.config)
 
   defp build_comment(user_comment) do
     "%% #{user_comment}\n"

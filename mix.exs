@@ -6,7 +6,7 @@ defmodule Exscript.Mixfile do
   def project do
     [app: :exscript,
      version: @vsn,
-     elixir: "~> 1.1-dev",
+     elixir: "~> 1.3",
      deps: deps,
      description: description,
      package: package]
