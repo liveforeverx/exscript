@@ -1,6 +1,6 @@
 defmodule Exscript.Mixfile do
   use Mix.Project
-  @vsn "0.0.1"
+  @vsn "0.1.0"
   @github "https://github.com/liveforeverx/exscript"
 
   def project do
@@ -19,7 +19,9 @@ defmodule Exscript.Mixfile do
   end
 
   defp package do
-    [links: %{"GitHub" => @github}]
+    [maintainers: ["Dmitry Russ(Aleksandrov)"],
+     licenses: ["Apache 2.0"],
+     links: %{"GitHub" => @github}]
    end
 
   # Configuration for the OTP application
